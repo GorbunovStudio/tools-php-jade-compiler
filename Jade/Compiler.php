@@ -682,7 +682,12 @@ class Compiler {
 
             $this->buffer($this->indent() . $open, false);
             $this->visitAttributes($tag->attributes);
-            $this->buffer($close . $this->newline(), false);
+
+            if ($tag->name != 'textarea') {
+                $this->buffer($close . $this->newline(), false);
+            } else {
+                $this->buffer($close, false);
+            }
         }else{
             $html_tag = '';
 
@@ -696,14 +701,33 @@ class Compiler {
         }
 
         if (!$self_closing) {
-            $this->indents++;
+            if ($tag->name != 'textarea') {
+                $this->indents++;                
+            } else {
+                $oldIndent = $this->indents;
+                $this->indents = 0;
+                $pp = $this->prettyprint;
+                $this->prettyprint = false;
+            }
+
             if (isset($tag->code)) {
                 $this->visitCode($tag->code);
             }
+
             $this->visit($tag->block);
-            $this->indents--;
+            
+            if ($tag->name != 'textarea') {                
+                $this->indents--;
+            } else {
+                $this->prettyprint = $pp;
+            }
 
             $this->buffer('</'. $tag->name . '>');
+
+            if ($tag->name == 'textarea') {
+                $this->indents = $oldIndent;
+                
+            }
         }
 
         if ($tag->name == 'pre') {
