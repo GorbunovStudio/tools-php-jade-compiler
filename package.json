@@ -1,0 +1,19 @@
+{
+  "name": "php-jade-compiler",
+  "version": "1.0.0",
+  "description": "Compile jade template to php",
+  "main": "render.php",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://rhode.optimuspro.ru/tools/phpJadeCompiler.git"
+  },
+  "keywords": [
+    "php",
+    "jade"
+  ],
+  "author": "optimus",
+  "license": "ISC"
+}
