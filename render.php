@@ -6,7 +6,7 @@
  * @license MIT
  */
 
-require_once("autoload.php");
+require_once(__DIR__ . "/autoload.php");
 
 $_jade = new \Jade\Jade(true);
 $result = $_jade->render($argv[1]);
