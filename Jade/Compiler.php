@@ -232,6 +232,11 @@ class Compiler {
         };
 
         $handle_code_inbetween = function() use(&$separators, $ns, $handle_recursion) {
+
+            if (!is_numeric($ns)) {
+                $ns = 0;
+            }
+
             $arguments  = array();
             $count      = 1;
 
