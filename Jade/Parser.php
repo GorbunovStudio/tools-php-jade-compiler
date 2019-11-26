@@ -471,7 +471,7 @@ class Parser {
             case 'class':
                 $token = $this->advance();
                 $tag->setAttribute($token->type, "'" . $token->value . "'");
-                continue;
+                break;
 
             case 'attributes':
                 $token = $this->advance();
@@ -487,7 +487,7 @@ class Parser {
                     $value = $obj[$name];
                     $tag->setAttribute($name, $value, $escaped[$name]);
                 }
-                continue;
+                break;
 
             default:
                 break 2;
